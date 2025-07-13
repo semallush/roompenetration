@@ -15,6 +15,7 @@ color = Color(0, 0, 0, 1)
 script = ExtResource("1_61tb2")
 
 [node name="room_base" type="NinePatchRect" parent="rooms"]
+visible = false
 offset_left = -87.0
 offset_top = 15.0
 offset_right = -22.0
@@ -30,6 +31,7 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="door_base" type="TextureRect" parent="rooms"]
+visible = false
 offset_left = -81.0
 offset_top = 103.0
 offset_right = -51.0
