@@ -10,6 +10,7 @@
 script = ExtResource("1_me3sr")
 
 [node name="edge" type="ColorRect" parent="."]
+clip_contents = true
 offset_right = 500.0
 offset_bottom = 500.0
 
@@ -19,12 +20,13 @@ offset_left = 1.0
 offset_top = 1.0
 offset_right = 499.0
 offset_bottom = 499.0
+mouse_filter = 1
 color = Color(0, 0, 0, 1)
 
-[node name="map_view" type="Node2D" parent="."]
+[node name="map_view" type="Node2D" parent="edge"]
 script = ExtResource("1_61tb2")
 
-[node name="room_base" type="NinePatchRect" parent="map_view"]
+[node name="room_base" type="NinePatchRect" parent="edge/map_view"]
 visible = false
 offset_left = -87.0
 offset_top = 15.0
@@ -40,7 +42,7 @@ patch_margin_bottom = 5
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
-[node name="door_base" type="TextureRect" parent="map_view"]
+[node name="door_base" type="TextureRect" parent="edge/map_view"]
 visible = false
 offset_left = -81.0
 offset_top = 103.0
@@ -48,8 +50,11 @@ offset_right = -51.0
 offset_bottom = 128.0
 texture = ExtResource("3_p7fer")
 
-[node name="map_player" type="TextureRect" parent="map_view"]
+[node name="map_player" type="TextureRect" parent="edge/map_view"]
 offset_right = 40.0
 offset_bottom = 28.0
 pivot_offset = Vector2(4.5, 14)
 texture = ExtResource("4_me3sr")
+
+[connection signal="mouse_entered" from="edge" to="." method="_on_edge_mouse_entered"]
+[connection signal="mouse_exited" from="edge" to="." method="_on_edge_mouse_exited"]

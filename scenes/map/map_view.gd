@@ -1,7 +1,7 @@
 #@tool
 extends Node2D
 
-@onready var complex = get_parent().get_parent().get_node("complex")
+@onready var complex = get_parent().get_parent().get_parent().get_node("complex")
 @onready var player = get_node("map_player")
 
 @export var WALL_THICKNESS = 5

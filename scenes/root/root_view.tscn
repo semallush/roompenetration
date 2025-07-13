@@ -1,8 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ceihno72vi8o0"]
+[gd_scene load_steps=9 format=3 uid="uid://ceihno72vi8o0"]
 
 [ext_resource type="Script" uid="uid://c3wqj6iugmji" path="res://scenes/root/complex.gd" id="1_gluis"]
 [ext_resource type="PackedScene" uid="uid://fxj4lfuspq5l" path="res://scenes/map/map_view.tscn" id="1_yw275"]
 [ext_resource type="PackedScene" uid="uid://110tth0q5h23" path="res://scenes/room/room_view.tscn" id="2_gluis"]
+[ext_resource type="Texture2D" uid="uid://cj6j5v3pmbvfe" path="res://assets/rolmaat.png" id="4_qgq3g"]
+[ext_resource type="Texture2D" uid="uid://d36xpslsdgj80" path="res://assets/rolmaat-tapeje.png" id="5_qpcf5"]
+[ext_resource type="Script" uid="uid://bd30y4l4x6s5r" path="res://scenes/root/rolmaat.gd" id="5_x5q6x"]
+[ext_resource type="Texture2D" uid="uid://tkf8rvjxvk7y" path="res://assets/rolmaat-muurtje.png" id="6_x5q6x"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_yw275"]
 viewport_path = NodePath("Panel/SubViewport")
@@ -20,30 +24,6 @@ color = Color(0, 0, 0, 1)
 [node name="map_view" parent="." instance=ExtResource("1_yw275")]
 position = Vector2(26, 23)
 
-[node name="mask" type="ColorRect" parent="."]
-offset_right = 26.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
-
-[node name="mask" type="ColorRect" parent="mask"]
-offset_left = 12.0
-offset_right = 530.0
-offset_bottom = 23.0
-color = Color(0, 0, 0, 1)
-
-[node name="mask1" type="ColorRect" parent="mask"]
-offset_left = 19.0
-offset_top = 523.0
-offset_right = 536.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
-
-[node name="mask2" type="ColorRect" parent="mask"]
-offset_left = 526.0
-offset_right = 1152.0
-offset_bottom = 648.0
-color = Color(0, 0, 0, 1)
-
 [node name="Panel" type="Panel" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel"]
@@ -55,3 +35,29 @@ texture = SubResource("ViewportTexture_yw275")
 size = Vector2i(762, 398)
 
 [node name="room" parent="Panel/SubViewport" instance=ExtResource("2_gluis")]
+
+[node name="rolmaat" type="Sprite2D" parent="."]
+position = Vector2(72, 571)
+texture = ExtResource("4_qgq3g")
+script = ExtResource("5_x5q6x")
+
+[node name="rolmaat_tapeje" type="NinePatchRect" parent="rolmaat"]
+offset_left = 37.0
+offset_top = 19.0
+offset_right = 43.0
+offset_bottom = 39.0
+mouse_filter = 0
+texture = ExtResource("5_qpcf5")
+region_rect = Rect2(0, 0, 45, 20)
+patch_margin_right = 6
+axis_stretch_horizontal = 1
+
+[node name="rolmaat_muurtje" type="TextureRect" parent="rolmaat"]
+offset_left = 44.0
+offset_top = -41.0
+offset_right = 60.0
+offset_bottom = 38.0
+texture = ExtResource("6_x5q6x")
+
+[connection signal="mouse_entered" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_entered"]
+[connection signal="mouse_exited" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_exited"]
