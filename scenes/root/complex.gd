@@ -1,5 +1,36 @@
 extends Node
 
+@onready var rolmaat = get_parent().get_node("rolmaat")
+
+func _input(event) -> void:
+	if(event is InputEventKey and event.pressed):
+		match event.keycode:
+			KEY_0:
+				enter_room(0)
+			KEY_1:
+				enter_room(1)
+			KEY_2:
+				enter_room(2)
+			_:
+				return
+
+func enter_room(door_index) -> void:
+	var new_door = doors[door_index]
+	var in_door = player.room == new_door.room_in
+	
+	var room_index = new_door.room_out if in_door else new_door.room_in
+	
+	player.door = door_index
+	player.room = room_index
+	player.orientation = new_door.wall_in if in_door else new_door.wall_out
+	player.position = Vector2(new_door.x, new_door.y) + Vector2(0.2, 0).rotated(0.5 * PI * player.orientation)
+	
+	if(!rooms[room_index].mapped):
+		rolmaat.progress = rolmaat.mapping_progress.init
+		rolmaat.set_muurtje()
+	
+	#laad nieuwe kamer in
+
 var player = {
 	room = 0,
 	door = 0,
@@ -37,6 +68,8 @@ var doors = [
 		mapped = true,
 		room_in = 0,
 		room_out = 1, # doors open towards room_out
+		wall_in = orient.east,
+		wall_out = orient.west,
 		orientation = orient.east,
 		x = rooms[0].x + rooms[0].w, 
 		y = rooms[0].y + 1.6
@@ -46,6 +79,8 @@ var doors = [
 		mapped = true,
 		room_in = 0,
 		room_out = 2, # doors open towards room_out
+		wall_in = orient.south,
+		wall_out = orient.north,
 		orientation = orient.south,
 		x = rooms[0].x + 1.2,
 		y = rooms[0].y + rooms[0].h
@@ -55,6 +90,8 @@ var doors = [
 		mapped = false,
 		room_in = 1,
 		room_out = 2, # doors open towards room_out
+		wall_in = orient.west,
+		wall_out = orient.east,
 		orientation = orient.west,
 		x = rooms[1].x + 0, 
 		y = rooms[1].y + 2.4
