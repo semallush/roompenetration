@@ -18,11 +18,9 @@ offset_bottom = 646.0
 color = Color(0, 0, 0, 1)
 
 [node name="map_view" parent="." instance=ExtResource("1_yw275")]
-position = Vector2(38, 41)
+position = Vector2(26, 23)
 
 [node name="Panel" type="Panel" parent="."]
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel"]
 position = Vector2(843, 310)
