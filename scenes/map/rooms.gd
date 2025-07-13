@@ -1,6 +1,7 @@
+@tool
 extends Node2D
 
-const WALL_THICKNESS = 5
+@export var WALL_THICKNESS = 5
 
 var room_texture = load("res://assets/walls_9patch.png")
 
@@ -23,21 +24,21 @@ func new_room(x, y, w, h) -> NinePatchRect:
 
 const sample_rooms = [
 	{
-		x = 20,
-		y = 20,
-		w = 200,
-		h = 150
+		x = 20.0,
+		y = 20.0,
+		w = 200.0,
+		h = 150.0
 	},
 	{
-		x = 220,
-		y = 80,
-		w = 170,
-		h = 240
+		x = 220.0,
+		y = 80.0,
+		w = 170.0,
+		h = 240.0
 	},
 	{
-		x = 60,
-		y = 170,
-		w = 160,
-		h = 220
+		x = 60.0,
+		y = 170.0,
+		w = 160.0,
+		h = 220.0
 	},
 ]
