@@ -7,9 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://d36xpslsdgj80" path="res://assets/rolmaat-tapeje.png" id="5_qpcf5"]
 [ext_resource type="Script" uid="uid://bd30y4l4x6s5r" path="res://scenes/root/rolmaat.gd" id="5_x5q6x"]
 [ext_resource type="Texture2D" uid="uid://tkf8rvjxvk7y" path="res://assets/rolmaat-muurtje.png" id="6_x5q6x"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_yw275"]
-viewport_path = NodePath("Panel/SubViewport")
+[ext_resource type="Script" uid="uid://cfbs88st7f1ed" path="res://scenes/root/sub_viewport.gd" id="4_o7idh"]
 
 [node name="world" type="Node2D"]
 
@@ -24,17 +22,49 @@ color = Color(0, 0, 0, 1)
 [node name="map_view" parent="." instance=ExtResource("1_yw275")]
 position = Vector2(26, 23)
 
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 587.0
+offset_top = 90.0
+offset_right = 627.0
+offset_bottom = 130.0
+scale = Vector2(0.733034, 0.733034)
+mouse_target = true
+[node name="mask" type="ColorRect" parent="."]
+offset_right = 26.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="mask" type="ColorRect" parent="mask"]
+offset_left = 12.0
+offset_right = 530.0
+offset_bottom = 23.0
+color = Color(0, 0, 0, 1)
+
+[node name="mask1" type="ColorRect" parent="mask"]
+offset_left = 19.0
+offset_top = 523.0
+offset_right = 536.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="mask2" type="ColorRect" parent="mask"]
+offset_left = 526.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
 [node name="Panel" type="Panel" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="Panel"]
-position = Vector2(843, 310)
-scale = Vector2(0.722656, 0.722656)
-texture = SubResource("ViewportTexture_yw275")
-
-[node name="SubViewport" type="SubViewport" parent="Panel"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+physics_object_picking_first_only = true
 size = Vector2i(762, 398)
+render_target_update_mode = 4
+script = ExtResource("4_o7idh")
 
-[node name="room" parent="Panel/SubViewport" instance=ExtResource("2_gluis")]
+[node name="room" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_gluis")]
 
 [node name="rolmaat" type="Sprite2D" parent="."]
 position = Vector2(72, 571)
