@@ -86,7 +86,7 @@ render_target_update_mode = 4
 [node name="Panel" type="Panel" parent="."]
 
 [node name="rolmaat" type="AnimatedSprite2D" parent="."]
-position = Vector2(72, 571)
+position = Vector2(72, 581)
 sprite_frames = SubResource("SpriteFrames_6w71l")
 animation = &"rest"
 script = ExtResource("5_x5q6x")

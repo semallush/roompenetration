@@ -21,7 +21,6 @@ func _ready() -> void:
 		var room_node = new_room(room.x, room.y, room.w, room.h, i)
 		add_child(room_node)
 	for door in complex.doors:
-		var room = complex.rooms[door.room_in]
 		if(door.mapped):
 			var door_node = new_door(door.x, door.y, door.orientation)
 			add_child(door_node)
@@ -35,7 +34,7 @@ func _process(delta: float) -> void:
 	var room_index = complex.player.room
 	var room = complex.rooms[complex.player.room]
 	if(!room.mapped):
-		var room_node = get_node("room_plan_{index}".format({"index": room_index}))
+		var room_node = get_node_or_null("room_plan_{index}".format({"index": room_index}))
 		if(room_node == null):
 			room_node = new_room(room.x, room.y, 0.1, 0.1, room_index)
 			room_node.scale = Vector2(0,0)
@@ -50,14 +49,6 @@ func _process(delta: float) -> void:
 				room_node.size.x = 5 + max(5, rolmaat_size * room.w * VIEW_SCALE)
 			rolmaat.mapping_progress.width_done: 
 				room_node.size.y = 5 + max(5, rolmaat_size * room.h * VIEW_SCALE)
-	
-	
-	
-	#var i = 0
-	#for room in complex.rooms:
-		#if(!room.mapped): continue
-		#var mapped_room = get_node("room_plan_{index}".format({"index": i}))
-		#i += 1
 
 func new_room(x, y, w, h, room_index) -> NinePatchRect:
 	var room = NinePatchRect.new()

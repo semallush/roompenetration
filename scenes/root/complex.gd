@@ -25,7 +25,8 @@ func enter_room(door_index) -> void:
 	player.door = door_index
 	player.room = room_index
 	player.orientation = new_door.wall_in if in_door else new_door.wall_out
-	player.position = Vector2(new_door.x, new_door.y) + Vector2(0.2, 0).rotated(0.5 * PI * player.orientation)
+	var vertical_offset = -0.2 if [orient.west, orient.south].has(player.orientation) else 0.2
+	player.position = Vector2(new_door.x, new_door.y) + Vector2(0.2, vertical_offset).rotated(0.5 * PI * player.orientation)
 	
 	if(!rooms[room_index].mapped):
 		rolmaat.progress = rolmaat.mapping_progress.init
