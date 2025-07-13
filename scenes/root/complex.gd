@@ -1,6 +1,7 @@
 extends Node
 
 @onready var rolmaat = get_parent().get_node("rolmaat")
+@onready var room_parent = get_node("../SubViewportContainer/SubViewport")
 
 func _input(event) -> void:
 	if(event is InputEventKey and event.pressed):
@@ -29,7 +30,36 @@ func enter_room(door_index) -> void:
 		rolmaat.progress = rolmaat.mapping_progress.init
 		rolmaat.set_muurtje()
 	
-	#laad nieuwe kamer in
+	# laad nieuwe kamer in
+	var room_doors = collect_room_doors(room_index)
+	var room_size = Vector2(rooms[room_index].w, rooms[room_index].h)
+	var new_room = Room.new_room(room_size, room_doors, player.door, player.orientation)
+	
+	# removes old room (the room in the editor is only there for adjusting the UI, it should get deleted right away)
+	for child in room_parent.get_children():
+		child.queue_free()
+	room_parent.add_child(new_room)
+	
+	new_room.update_doors()
+	new_room.update_room()
+	
+func collect_room_doors(room_index) -> Array:
+	# collects necessary door information ("room" doors) for generating room view room
+	var room_doors = []
+	for i in range(doors.size()):
+		if doors[i].room_in == room_index || doors[i].room_out == room_index:
+			var door_x = doors[i].x-rooms[room_index].x
+			var door_y = doors[i].y-rooms[room_index].y
+			
+			var door = {
+				pos = Vector2(door_x,door_y),
+				orient = doors[i].orientation,
+				index = i
+			}
+			room_doors.append(door)
+	return room_doors
+	
+
 
 var player = {
 	room = 0,
