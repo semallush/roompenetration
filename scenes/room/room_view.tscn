@@ -117,3 +117,6 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="door"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00713909, 0.845924, 0.00155258)
 shape = SubResource("BoxShape3D_jrm0b")
+
+[connection signal="mouse_entered" from="door" to="door" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="door" to="door" method="_on_mouse_exited"]
