@@ -11,6 +11,8 @@ func _input(event) -> void:
 				enter_room(1)
 			KEY_2:
 				enter_room(2)
+			KEY_3:
+				enter_room(3)
 			_:
 				return
 
@@ -60,6 +62,13 @@ var rooms = [
 		w = 3.2,
 		h = 4.4
 	},
+	{
+		mapped = false,
+		x = 4.4,
+		y = 6.4,
+		w = 2.6,
+		h = 3.0
+	},
 ]
 
 var doors = [
@@ -67,7 +76,7 @@ var doors = [
 		scribbled = true,
 		mapped = true,
 		room_in = 0,
-		room_out = 1, # doors open towards room_out
+		room_out = 1, 
 		wall_in = orient.east,
 		wall_out = orient.west,
 		orientation = orient.east,
@@ -78,7 +87,7 @@ var doors = [
 		scribbled = true,
 		mapped = true,
 		room_in = 0,
-		room_out = 2, # doors open towards room_out
+		room_out = 2, 
 		wall_in = orient.south,
 		wall_out = orient.north,
 		orientation = orient.south,
@@ -89,12 +98,23 @@ var doors = [
 		scribbled = false,
 		mapped = false,
 		room_in = 1,
-		room_out = 2, # doors open towards room_out
+		room_out = 3, 
+		wall_in = orient.south,
+		wall_out = orient.north,
+		orientation = orient.south,
+		x = rooms[1].x + 0.8, 
+		y = rooms[1].y + rooms[1].h
+	},
+	{
+		scribbled = false,
+		mapped = false,
+		room_in = 3,
+		room_out = 2, 
 		wall_in = orient.west,
 		wall_out = orient.east,
 		orientation = orient.west,
-		x = rooms[1].x + 0, 
-		y = rooms[1].y + 2.4
+		x = rooms[3].x, 
+		y = rooms[3].y + 0.4
 	},
 ]
 
