@@ -21,6 +21,9 @@ func _ready() -> void:
 	update_doors()
 	update_camera()
 
+
+
+
 func update_room() -> void:
 	
 	$floor.mesh = PlaneMesh.new()

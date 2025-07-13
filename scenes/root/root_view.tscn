@@ -3,9 +3,7 @@
 [ext_resource type="Script" uid="uid://c3wqj6iugmji" path="res://scenes/root/complex.gd" id="1_gluis"]
 [ext_resource type="PackedScene" uid="uid://fxj4lfuspq5l" path="res://scenes/map/map_view.tscn" id="1_yw275"]
 [ext_resource type="PackedScene" uid="uid://110tth0q5h23" path="res://scenes/room/room_view.tscn" id="2_gluis"]
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_yw275"]
-viewport_path = NodePath("Panel/SubViewport")
+[ext_resource type="Script" uid="uid://cfbs88st7f1ed" path="res://scenes/root/sub_viewport.gd" id="4_o7idh"]
 
 [node name="world" type="Node2D"]
 
@@ -20,14 +18,21 @@ color = Color(0, 0, 0, 1)
 [node name="map_view" parent="." instance=ExtResource("1_yw275")]
 position = Vector2(26, 23)
 
-[node name="Panel" type="Panel" parent="."]
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 587.0
+offset_top = 90.0
+offset_right = 627.0
+offset_bottom = 130.0
+scale = Vector2(0.733034, 0.733034)
+mouse_target = true
 
-[node name="Sprite2D" type="Sprite2D" parent="Panel"]
-position = Vector2(843, 310)
-scale = Vector2(0.722656, 0.722656)
-texture = SubResource("ViewportTexture_yw275")
-
-[node name="SubViewport" type="SubViewport" parent="Panel"]
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+physics_object_picking = true
+physics_object_picking_sort = true
+physics_object_picking_first_only = true
 size = Vector2i(762, 398)
+render_target_update_mode = 4
+script = ExtResource("4_o7idh")
 
-[node name="room" parent="Panel/SubViewport" instance=ExtResource("2_gluis")]
+[node name="room" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_gluis")]

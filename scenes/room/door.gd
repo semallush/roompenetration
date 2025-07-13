@@ -1,5 +1,6 @@
 extends Area3D
 
+
 func _on_mouse_entered() -> void:
 	pass # Replace with function body.
 	print("mouse in door")
