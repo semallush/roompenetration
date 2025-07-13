@@ -1,11 +1,75 @@
-[gd_scene load_steps=2 format=3 uid="uid://110tth0q5h23"]
+[gd_scene load_steps=14 format=3 uid="uid://110tth0q5h23"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_pyxak"]
+[ext_resource type="Script" uid="uid://i5dndrrs0al1" path="res://scenes/room/room_object.gd" id="1_nd0ph"]
+[ext_resource type="Texture2D" uid="uid://b3eex22yyhgw7" path="res://room_tiles_012.png" id="2_s50t8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_7u4ld"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5gkwi"]
+atlas = ExtResource("2_s50t8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qj5x"]
+albedo_texture = SubResource("AtlasTexture_5gkwi")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jrm0b"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_a0ii0"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sbqfw"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_udvj8"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d0l0y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0ii0"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pe0rc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udvj8"]
+albedo_color = Color(0, 0, 0, 1)
 
 [node name="room" type="Node3D"]
 
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
 [node name="room_object" type="Node3D" parent="."]
+script = ExtResource("1_nd0ph")
+room_width = 2.0
+room_depth = 2.0
 
 [node name="floor" type="MeshInstance3D" parent="room_object"]
-mesh = SubResource("PlaneMesh_pyxak")
+mesh = SubResource("PlaneMesh_7u4ld")
+surface_material_override/0 = SubResource("StandardMaterial3D_2qj5x")
+
+[node name="wall_left" type="MeshInstance3D" parent="room_object"]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1, 1, 0)
+mesh = SubResource("PlaneMesh_jrm0b")
+
+[node name="wall_right" type="MeshInstance3D" parent="room_object"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1, 1, 0)
+mesh = SubResource("PlaneMesh_a0ii0")
+
+[node name="wall_back" type="MeshInstance3D" parent="room_object"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, -1)
+mesh = SubResource("PlaneMesh_sbqfw")
 skeleton = NodePath("../..")
+
+[node name="ceiling" type="MeshInstance3D" parent="room_object"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 2, 0)
+mesh = SubResource("PlaneMesh_udvj8")
+
+[node name="black_bar_left" type="MeshInstance3D" parent="room_object"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2, 1, 1)
+mesh = SubResource("PlaneMesh_d0l0y")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0ii0")
+
+[node name="black_bar_right" type="MeshInstance3D" parent="room_object"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, 1, 1)
+mesh = SubResource("PlaneMesh_pe0rc")
+surface_material_override/0 = SubResource("StandardMaterial3D_udvj8")
+
+[node name="camera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
