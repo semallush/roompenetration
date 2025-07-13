@@ -1,12 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://ceihno72vi8o0"]
+[gd_scene load_steps=8 format=3 uid="uid://ceihno72vi8o0"]
 
 [ext_resource type="Script" uid="uid://c3wqj6iugmji" path="res://scenes/root/complex.gd" id="1_gluis"]
 [ext_resource type="PackedScene" uid="uid://fxj4lfuspq5l" path="res://scenes/map/map_view.tscn" id="1_yw275"]
 [ext_resource type="PackedScene" uid="uid://110tth0q5h23" path="res://scenes/room/room_view.tscn" id="2_gluis"]
-[ext_resource type="Script" uid="uid://cfbs88st7f1ed" path="res://scenes/root/sub_viewport.gd" id="4_o7idh"]
 [ext_resource type="Texture2D" uid="uid://cj6j5v3pmbvfe" path="res://assets/rolmaat.png" id="4_qgq3g"]
 [ext_resource type="Texture2D" uid="uid://d36xpslsdgj80" path="res://assets/rolmaat-tapeje.png" id="5_qpcf5"]
-[ext_resource type="Script" uid="uid://bd30y4l4x6s5r" path="res://scenes/root/rolmaat.gd" id="5_x5q6x"]
+[ext_resource type="Script" path="res://scenes/root/rolmaat.gd" id="5_x5q6x"]
 [ext_resource type="Texture2D" uid="uid://tkf8rvjxvk7y" path="res://assets/rolmaat-muurtje.png" id="6_x5q6x"]
 
 [node name="world" type="Node2D"]
@@ -23,11 +22,11 @@ color = Color(0, 0, 0, 1)
 position = Vector2(26, 23)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = 587.0
+offset_left = 530.0
 offset_top = 90.0
-offset_right = 627.0
-offset_bottom = 130.0
-scale = Vector2(0.733034, 0.733034)
+offset_right = 1292.0
+offset_bottom = 488.0
+scale = Vector2(0.810108, 0.810108)
 mouse_target = true
 
 [node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
@@ -37,7 +36,6 @@ physics_object_picking_sort = true
 physics_object_picking_first_only = true
 size = Vector2i(762, 398)
 render_target_update_mode = 4
-script = ExtResource("4_o7idh")
 
 [node name="room" parent="SubViewportContainer/SubViewport" instance=ExtResource("2_gluis")]
 
@@ -66,5 +64,7 @@ offset_right = 60.0
 offset_bottom = 38.0
 texture = ExtResource("6_x5q6x")
 
+[connection signal="mouse_entered" from="SubViewportContainer/SubViewport/room/door" to="SubViewportContainer/SubViewport/room/door" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewportContainer/SubViewport/room/door" to="SubViewportContainer/SubViewport/room/door" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_entered"]
 [connection signal="mouse_exited" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_exited"]
