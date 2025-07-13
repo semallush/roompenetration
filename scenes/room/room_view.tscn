@@ -1,15 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://110tth0q5h23"]
+[gd_scene load_steps=13 format=3 uid="uid://110tth0q5h23"]
 
 [ext_resource type="Script" uid="uid://i5dndrrs0al1" path="res://scenes/room/room_object.gd" id="1_nd0ph"]
-[ext_resource type="Texture2D" uid="uid://b3eex22yyhgw7" path="res://room_tiles_012.png" id="2_s50t8"]
+[ext_resource type="Texture2D" uid="uid://cndf0fv6y8116" path="res://assets/wood.jpg" id="2_s50t8"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_7u4ld"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5gkwi"]
-atlas = ExtResource("2_s50t8")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2qj5x"]
-albedo_texture = SubResource("AtlasTexture_5gkwi")
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7u4ld"]
+albedo_texture = ExtResource("2_s50t8")
+uv1_scale = Vector3(2, 2, 2)
+uv2_scale = Vector3(2, 2, 2)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jrm0b"]
 
@@ -32,7 +31,7 @@ albedo_color = Color(0, 0, 0, 1)
 [node name="room" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+transform = Transform3D(-0.866024, -0.433016, 0.250001, 0, 0.499998, 0.866026, -0.500003, 0.749999, -0.43301, 0, 1.17184, 0)
 shadow_enabled = true
 
 [node name="room_object" type="Node3D" parent="."]
@@ -42,7 +41,7 @@ room_depth = 2.0
 
 [node name="floor" type="MeshInstance3D" parent="room_object"]
 mesh = SubResource("PlaneMesh_7u4ld")
-surface_material_override/0 = SubResource("StandardMaterial3D_2qj5x")
+surface_material_override/0 = SubResource("StandardMaterial3D_7u4ld")
 
 [node name="wall_left" type="MeshInstance3D" parent="room_object"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1, 1, 0)
