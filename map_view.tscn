@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://fxj4lfuspq5l"]
+[gd_scene load_steps=3 format=3 uid="uid://qppyj5njqijs"]
 
 [ext_resource type="Script" uid="uid://bivvjmq1k8pk5" path="res://scenes/map/rooms.gd" id="1_61tb2"]
 [ext_resource type="Texture2D" uid="uid://cd8ovjjhjhtiv" path="res://assets/walls_9patch.png" id="2_61tb2"]
