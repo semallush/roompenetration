@@ -1,4 +1,4 @@
-extends Sprite2D
+extends AnimatedSprite2D
 
 @onready var complex = get_parent().get_node("complex")
 @onready var tapeje = get_node("rolmaat_tapeje")
@@ -16,6 +16,7 @@ var mouse_over = false
 var mouse_base_x = 0
 var speed = 0
 var progress = mapping_progress.init
+var stop_animation = false
 
 func _ready() -> void:
 	muurtje_base_pos = muurtje.position
@@ -57,6 +58,15 @@ func _process(delta: float) -> void:
 		if(tapeje.size.x <= tapeje_base_width):
 			tapeje.size.x = tapeje_base_width 
 			speed = 0
+			play("jiggle")
+			tapeje.visible = false
+	if(stop_animation):
+		play("rest")
+		stop()
+		tapeje.visible = true
+		stop_animation = false
+	if(frame == 6):
+		stop_animation = true
 
 func _on_tapeje_mouse_entered() -> void:
 	mouse_over = true
