@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://110tth0q5h23"]
+[gd_scene load_steps=17 format=3 uid="uid://110tth0q5h23"]
 
-[ext_resource type="Script" uid="uid://i5dndrrs0al1" path="res://scenes/room/room_object.gd" id="1_nd0ph"]
+[ext_resource type="Script" uid="uid://dyl6uxprwu222" path="res://scenes/room/room_view.gd" id="1_2qj5x"]
 [ext_resource type="Texture2D" uid="uid://cndf0fv6y8116" path="res://assets/wood.jpg" id="2_s50t8"]
 [ext_resource type="Material" uid="uid://c321dvjcywen5" path="res://assets/wallmaterial.tres" id="3_7u4ld"]
 [ext_resource type="ArrayMesh" uid="uid://d0aeifsj4oepk" path="res://assets/door/door.obj" id="4_5gkwi"]
+[ext_resource type="Script" uid="uid://by88cxptb0vkh" path="res://scenes/room/door.gd" id="5_2qj5x"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5gkwi"]
 size = Vector2(4, 2)
@@ -37,67 +38,16 @@ size = Vector2(4, 2.5)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udvj8"]
 albedo_color = Color(0, 0, 0, 1)
 
-[node name="room" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_jrm0b"]
+size = Vector3(0.815063, 1.81683, 0.0814209)
 
-[node name="room_object" type="Node3D" parent="."]
-script = ExtResource("1_nd0ph")
-room_width = 4.0
+[node name="room" type="Node3D"]
+script = ExtResource("1_2qj5x")
+room_width = 2.0
 room_depth = 2.0
-room_height = 2.5
 show_door_left = true
 show_door_right = true
 show_door_back = true
-
-[node name="floor" type="MeshInstance3D" parent="room_object"]
-mesh = SubResource("PlaneMesh_5gkwi")
-surface_material_override/0 = SubResource("StandardMaterial3D_7u4ld")
-
-[node name="wall_left" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2, 1.25, 0)
-mesh = SubResource("PlaneMesh_2qj5x")
-surface_material_override/0 = ExtResource("3_7u4ld")
-
-[node name="wall_right" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2, 1.25, 0)
-mesh = SubResource("PlaneMesh_jrm0b")
-surface_material_override/0 = ExtResource("3_7u4ld")
-
-[node name="wall_back" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.25, -1)
-material_override = ExtResource("3_7u4ld")
-mesh = SubResource("PlaneMesh_a0ii0")
-skeleton = NodePath("../..")
-surface_material_override/0 = ExtResource("3_7u4ld")
-
-[node name="ceiling" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 2.5, 0)
-material_override = ExtResource("3_7u4ld")
-mesh = SubResource("PlaneMesh_sbqfw")
-
-[node name="black_bar_left" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4, 1.25, 1)
-mesh = SubResource("PlaneMesh_udvj8")
-surface_material_override/0 = SubResource("StandardMaterial3D_a0ii0")
-
-[node name="black_bar_right" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4, 1.25, 1)
-mesh = SubResource("PlaneMesh_d0l0y")
-surface_material_override/0 = SubResource("StandardMaterial3D_udvj8")
-
-[node name="door_back" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(0.00826089, 5.55112e-17, 3.30872e-24, 2.56573e-24, -3.61095e-10, 0.00826089, 5.55112e-17, -0.00826089, -3.61095e-10, 0, 0, -1)
-mesh = ExtResource("4_5gkwi")
-skeleton = NodePath("../..")
-
-[node name="door_left" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(-3.61095e-10, -0.00826089, -3.61095e-10, 2.56573e-24, -3.61095e-10, 0.00826089, -0.00826089, 3.61095e-10, 1.5784e-17, -2, 0, 0)
-mesh = ExtResource("4_5gkwi")
-skeleton = NodePath("../..")
-
-[node name="door_right" type="MeshInstance3D" parent="room_object"]
-transform = Transform3D(-3.61095e-10, 0.00826089, 3.61095e-10, 2.56573e-24, -3.61095e-10, 0.00826089, 0.00826089, 3.61095e-10, 1.5784e-17, 2, 0, 0)
-mesh = ExtResource("4_5gkwi")
-skeleton = NodePath("../..")
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 2)
@@ -109,3 +59,68 @@ light_indirect_energy = 1.242
 light_volumetric_fog_energy = 0.919
 light_size = 0.859
 light_specular = 5.025
+
+[node name="floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_5gkwi")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_7u4ld")
+
+[node name="wall_left" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -2, 1.25, 0)
+mesh = SubResource("PlaneMesh_2qj5x")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_7u4ld")
+
+[node name="wall_right" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 2, 1.25, 0)
+mesh = SubResource("PlaneMesh_jrm0b")
+skeleton = NodePath("")
+surface_material_override/0 = ExtResource("3_7u4ld")
+
+[node name="wall_back" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.25, -1)
+material_override = ExtResource("3_7u4ld")
+mesh = SubResource("PlaneMesh_a0ii0")
+surface_material_override/0 = ExtResource("3_7u4ld")
+
+[node name="ceiling" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 2.5, 0)
+material_override = ExtResource("3_7u4ld")
+mesh = SubResource("PlaneMesh_sbqfw")
+skeleton = NodePath("")
+
+[node name="black_bar_left" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -4, 1.25, 1)
+mesh = SubResource("PlaneMesh_udvj8")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_a0ii0")
+
+[node name="black_bar_right" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 4, 1.25, 1)
+mesh = SubResource("PlaneMesh_d0l0y")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_udvj8")
+
+[node name="door_back" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.00826089, 5.55112e-17, 3.30872e-24, 2.56573e-24, -3.61095e-10, 0.00826089, 5.55112e-17, -0.00826089, -3.61095e-10, 0.00409842, -0.0121436, -0.984463)
+mesh = ExtResource("4_5gkwi")
+
+[node name="door_left" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.61095e-10, -0.00826089, -3.61095e-10, 2.56573e-24, -3.61095e-10, 0.00826089, -0.00826089, 3.61095e-10, 1.5784e-17, -2, 0, 0)
+mesh = ExtResource("4_5gkwi")
+
+[node name="door_right" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.61095e-10, 0.00826089, 3.61095e-10, 2.56573e-24, -3.61095e-10, 0.00826089, 0.00826089, 3.61095e-10, 1.5784e-17, 2, 0, 0)
+mesh = ExtResource("4_5gkwi")
+
+[node name="door" type="Area3D" parent="."]
+script = ExtResource("5_2qj5x")
+
+[node name="door_mesh" type="MeshInstance3D" parent="door"]
+transform = Transform3D(0.00826089, 0, 0, 0, -3.61095e-10, 0.00826089, 0, -0.00826089, -3.61095e-10, 0, 0, 0)
+mesh = ExtResource("4_5gkwi")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="door"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00713909, 0.845924, 0.00155258)
+shape = SubResource("BoxShape3D_jrm0b")
