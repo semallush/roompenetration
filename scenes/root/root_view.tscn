@@ -110,7 +110,13 @@ offset_right = 61.0
 offset_bottom = 38.0
 texture = ExtResource("6_x5q6x")
 
-[connection signal="mouse_entered" from="SubViewportContainer/SubViewport/room/door" to="SubViewportContainer/SubViewport/room/door" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="SubViewportContainer/SubViewport/room/door" to="SubViewportContainer/SubViewport/room/door" method="_on_mouse_exited"]
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+offset_left = 696.0
+offset_top = 612.0
+offset_right = 1196.0
+offset_bottom = 632.0
+text = "hint: you can use the tape measure to measure your cock"
+scroll_active = false
+
 [connection signal="mouse_entered" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_entered"]
 [connection signal="mouse_exited" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_exited"]
