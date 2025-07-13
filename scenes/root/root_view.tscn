@@ -1,12 +1,56 @@
-[gd_scene load_steps=8 format=3 uid="uid://ceihno72vi8o0"]
+[gd_scene load_steps=16 format=3 uid="uid://ceihno72vi8o0"]
 
 [ext_resource type="Script" uid="uid://c3wqj6iugmji" path="res://scenes/root/complex.gd" id="1_gluis"]
 [ext_resource type="PackedScene" uid="uid://fxj4lfuspq5l" path="res://scenes/map/map_view.tscn" id="1_yw275"]
 [ext_resource type="PackedScene" uid="uid://110tth0q5h23" path="res://scenes/room/room_view.tscn" id="2_gluis"]
+[ext_resource type="Texture2D" uid="uid://cw0d4y56s4c87" path="res://assets/rolmaat-animation/rolmaat1.png" id="4_3bjt6"]
 [ext_resource type="Texture2D" uid="uid://cj6j5v3pmbvfe" path="res://assets/rolmaat.png" id="4_qgq3g"]
+[ext_resource type="Texture2D" uid="uid://bmouc8xlofx0c" path="res://assets/rolmaat-animation/rolmaat2.png" id="5_i5q3j"]
 [ext_resource type="Texture2D" uid="uid://d36xpslsdgj80" path="res://assets/rolmaat-tapeje.png" id="5_qpcf5"]
 [ext_resource type="Script" uid="uid://bd30y4l4x6s5r" path="res://scenes/root/rolmaat.gd" id="5_x5q6x"]
+[ext_resource type="Texture2D" uid="uid://cofvl6ok5022t" path="res://assets/rolmaat-animation/rolmaat3.png" id="6_cu4oo"]
 [ext_resource type="Texture2D" uid="uid://tkf8rvjxvk7y" path="res://assets/rolmaat-muurtje.png" id="6_x5q6x"]
+[ext_resource type="Texture2D" uid="uid://dwsm4js74khsr" path="res://assets/rolmaat-animation/rolmaat4.png" id="7_0sxgk"]
+[ext_resource type="Texture2D" uid="uid://b3hlrv4j6sxiw" path="res://assets/rolmaat-animation/rolmaat5.png" id="8_jg10f"]
+[ext_resource type="Texture2D" uid="uid://dsd0dobx7bea8" path="res://assets/rolmaat-animation/rolmaat6.png" id="9_66ps0"]
+[ext_resource type="Texture2D" uid="uid://dbfhr1dfne2vu" path="res://assets/rolmaat-animation/rolmaat7.png" id="10_1kodk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6w71l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3bjt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_i5q3j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cu4oo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0sxgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_jg10f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_66ps0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_1kodk")
+}],
+"loop": true,
+"name": &"jiggle",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_qgq3g")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 5.0
+}]
 
 [node name="world" type="Node2D"]
 
@@ -41,28 +85,32 @@ render_target_update_mode = 4
 
 [node name="Panel" type="Panel" parent="."]
 
-[node name="rolmaat" type="Sprite2D" parent="."]
-position = Vector2(72, 571)
-texture = ExtResource("4_qgq3g")
+[node name="rolmaat" type="AnimatedSprite2D" parent="."]
+position = Vector2(72, 581)
+sprite_frames = SubResource("SpriteFrames_6w71l")
+animation = &"rest"
 script = ExtResource("5_x5q6x")
 
 [node name="rolmaat_tapeje" type="NinePatchRect" parent="rolmaat"]
-offset_left = 37.0
-offset_top = 19.0
-offset_right = 43.0
-offset_bottom = 39.0
-mouse_filter = 0
+show_behind_parent = true
+offset_left = 33.0
+offset_top = 10.0
+offset_right = 51.0
+offset_bottom = 46.0
+mouse_filter = 1
 texture = ExtResource("5_qpcf5")
-region_rect = Rect2(0, 0, 45, 20)
-patch_margin_right = 6
+region_rect = Rect2(0, 0, 52, 36)
+patch_margin_right = 12
 axis_stretch_horizontal = 1
 
 [node name="rolmaat_muurtje" type="TextureRect" parent="rolmaat"]
-offset_left = 44.0
+offset_left = 45.0
 offset_top = -41.0
-offset_right = 60.0
+offset_right = 61.0
 offset_bottom = 38.0
 texture = ExtResource("6_x5q6x")
 
+[connection signal="mouse_entered" from="SubViewportContainer/SubViewport/room/door" to="SubViewportContainer/SubViewport/room/door" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="SubViewportContainer/SubViewport/room/door" to="SubViewportContainer/SubViewport/room/door" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_entered"]
 [connection signal="mouse_exited" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_exited"]
