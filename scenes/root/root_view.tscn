@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://110tth0q5h23" path="res://scenes/room/room_view.tscn" id="2_gluis"]
 [ext_resource type="Texture2D" uid="uid://cj6j5v3pmbvfe" path="res://assets/rolmaat.png" id="4_qgq3g"]
 [ext_resource type="Texture2D" uid="uid://d36xpslsdgj80" path="res://assets/rolmaat-tapeje.png" id="5_qpcf5"]
-[ext_resource type="Script" path="res://scenes/root/rolmaat.gd" id="5_x5q6x"]
+[ext_resource type="Script" uid="uid://bd30y4l4x6s5r" path="res://scenes/root/rolmaat.gd" id="5_x5q6x"]
 [ext_resource type="Texture2D" uid="uid://tkf8rvjxvk7y" path="res://assets/rolmaat-muurtje.png" id="6_x5q6x"]
 
 [node name="world" type="Node2D"]
@@ -64,7 +64,5 @@ offset_right = 60.0
 offset_bottom = 38.0
 texture = ExtResource("6_x5q6x")
 
-[connection signal="mouse_entered" from="SubViewportContainer/SubViewport/room/door" to="SubViewportContainer/SubViewport/room/door" method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="SubViewportContainer/SubViewport/room/door" to="SubViewportContainer/SubViewport/room/door" method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_entered"]
 [connection signal="mouse_exited" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_exited"]

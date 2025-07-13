@@ -31,11 +31,6 @@ albedo_color = Color(0, 0, 0, 1)
 
 [node name="room" type="Node3D"]
 script = ExtResource("1_2qj5x")
-room_width = 2.0
-room_depth = 2.0
-show_door_left = true
-show_door_right = true
-show_door_back = true
 
 [node name="camera" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2)
