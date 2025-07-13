@@ -20,6 +20,30 @@ color = Color(0, 0, 0, 1)
 [node name="map_view" parent="." instance=ExtResource("1_yw275")]
 position = Vector2(26, 23)
 
+[node name="mask" type="ColorRect" parent="."]
+offset_right = 26.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="mask" type="ColorRect" parent="mask"]
+offset_left = 12.0
+offset_right = 530.0
+offset_bottom = 23.0
+color = Color(0, 0, 0, 1)
+
+[node name="mask1" type="ColorRect" parent="mask"]
+offset_left = 19.0
+offset_top = 523.0
+offset_right = 536.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
+[node name="mask2" type="ColorRect" parent="mask"]
+offset_left = 526.0
+offset_right = 1152.0
+offset_bottom = 648.0
+color = Color(0, 0, 0, 1)
+
 [node name="Panel" type="Panel" parent="."]
 
 [node name="Sprite2D" type="Sprite2D" parent="Panel"]

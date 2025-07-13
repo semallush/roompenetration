@@ -1,17 +1,20 @@
-[gd_scene load_steps=5 format=3 uid="uid://fxj4lfuspq5l"]
+[gd_scene load_steps=6 format=3 uid="uid://fxj4lfuspq5l"]
 
 [ext_resource type="Script" uid="uid://bivvjmq1k8pk5" path="res://scenes/map/map_view.gd" id="1_61tb2"]
+[ext_resource type="Script" uid="uid://b3jyiuigllikb" path="res://scenes/map/map_window.gd" id="1_me3sr"]
 [ext_resource type="Texture2D" uid="uid://b6dsj5pr83wja" path="res://assets/map-assets_walls.png" id="2_sxqj8"]
 [ext_resource type="Texture2D" uid="uid://dyoxq6y17g4bu" path="res://assets/map-assets_door.png" id="3_p7fer"]
 [ext_resource type="Texture2D" uid="uid://ycqddn0qdvux" path="res://assets/map-assets_player.png" id="4_me3sr"]
 
 [node name="map_window" type="Node2D"]
+script = ExtResource("1_me3sr")
 
 [node name="edge" type="ColorRect" parent="."]
 offset_right = 500.0
 offset_bottom = 500.0
 
 [node name="bg" type="ColorRect" parent="edge"]
+layout_mode = 0
 offset_left = 1.0
 offset_top = 1.0
 offset_right = 499.0
