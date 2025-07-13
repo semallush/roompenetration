@@ -29,11 +29,11 @@ func _process(delta: float) -> void:
 	player.position = complex.player.position * VIEW_SCALE - Vector2(4.5, 14)
 	player.rotation = rot_from_ori(complex.player.orientation)
 	
-	var i = 0
-	for room in complex.rooms:
-		if(!room.mapped): continue
-		var mapped_room = get_node("room_plan_{index}".format({"index": i}))
-		i += 1
+	#var i = 0
+	#for room in complex.rooms:
+		#if(!room.mapped): continue
+		#var mapped_room = get_node("room_plan_{index}".format({"index": i}))
+		#i += 1
 
 func new_room(x, y, w, h, room_index) -> NinePatchRect:
 	var room = NinePatchRect.new()
