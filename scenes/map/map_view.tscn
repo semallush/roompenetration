@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://fxj4lfuspq5l"]
+[gd_scene load_steps=4 format=3 uid="uid://fxj4lfuspq5l"]
 
-[ext_resource type="Script" path="res://scenes/map/rooms.gd" id="1_61tb2"]
-[ext_resource type="Texture2D" uid="uid://cd8ovjjhjhtiv" path="res://assets/walls_9patch.png" id="2_61tb2"]
+[ext_resource type="Script" uid="uid://bivvjmq1k8pk5" path="res://scenes/map/rooms.gd" id="1_61tb2"]
+[ext_resource type="Texture2D" uid="uid://b6dsj5pr83wja" path="res://assets/map-assets_walls.png" id="2_sxqj8"]
+[ext_resource type="Texture2D" uid="uid://dyoxq6y17g4bu" path="res://assets/map-assets_door.png" id="3_p7fer"]
 
 [node name="map_view" type="Node2D"]
 
@@ -18,7 +19,7 @@ offset_left = -87.0
 offset_top = 15.0
 offset_right = -22.0
 offset_bottom = 78.0
-texture = ExtResource("2_61tb2")
+texture = ExtResource("2_sxqj8")
 draw_center = false
 region_rect = Rect2(0, 0, 30, 30)
 patch_margin_left = 5
@@ -27,3 +28,10 @@ patch_margin_right = 5
 patch_margin_bottom = 5
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
+
+[node name="door_base" type="TextureRect" parent="rooms"]
+offset_left = -81.0
+offset_top = 103.0
+offset_right = -51.0
+offset_bottom = 128.0
+texture = ExtResource("3_p7fer")
