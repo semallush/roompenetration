@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://110tth0q5h23"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_pyxak"]
+
+[node name="room" type="Node3D"]
+
+[node name="room_object" type="Node3D" parent="."]
+
+[node name="floor" type="MeshInstance3D" parent="room_object"]
+mesh = SubResource("PlaneMesh_pyxak")
+skeleton = NodePath("../..")
