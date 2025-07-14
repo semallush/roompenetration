@@ -3,6 +3,7 @@ extends Node
 @onready var rolmaat = get_tree().root.get_node("world/rolmaat")
 @onready var room_parent = get_tree().root.get_node("world/SubViewportContainer/SubViewport")
 
+# draw maps on https://editor.p5js.org/dakerlogend/sketches/vXFGbJ8Df
 var rooms_json = "penis.json"
 
 var player
