@@ -1,0 +1,177 @@
+{
+  "player": {
+    "room": 0,
+    "door": 0,
+    "orientation": 0,
+    "position": [
+      4.4,
+      7
+    ]
+  },
+  "rooms": [
+    {
+      "mapped": true,
+      "x": 3.4,
+      "y": 5.2,
+      "w": 3.6,
+      "h": 4.8
+    },
+    {
+      "mapped": true,
+      "x": 7,
+      "y": 3.2,
+      "w": 2.6,
+      "h": 4.8
+    },
+    {
+      "mapped": true,
+      "x": 9.6,
+      "y": 3.4,
+      "w": 6.6,
+      "h": 2.6
+    },
+    {
+      "mapped": true,
+      "x": 16.2,
+      "y": 5.2,
+      "w": 2.4,
+      "h": 5.8
+    },
+    {
+      "mapped": true,
+      "x": 11.6,
+      "y": 7.199999999999999,
+      "w": 4.6,
+      "h": 3
+    },
+    {
+      "mapped": true,
+      "x": 9.6,
+      "y": 7.4,
+      "w": 2,
+      "h": 2.2
+    },
+    {
+      "mapped": true,
+      "x": 14.200000000000001,
+      "y": 11,
+      "w": 3.4,
+      "h": 1.8
+    },
+    {
+      "mapped": true,
+      "x": 12.399999999999999,
+      "y": 10.2,
+      "w": 1.8,
+      "h": 2.2
+    },
+    {
+      "mapped": true,
+      "x": 7.6,
+      "y": 8,
+      "w": 2,
+      "h": 2.2
+    }
+  ],
+  "doors": [
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 0,
+      "room_out": 1,
+      "wall_in": 0,
+      "wall_out": 2,
+      "orientation": 0,
+      "x": 7,
+      "y": 6.4
+    },
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 1,
+      "room_out": 2,
+      "wall_in": 0,
+      "wall_out": 2,
+      "orientation": 0,
+      "x": 9.6,
+      "y": 4.4
+    },
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 2,
+      "room_out": 3,
+      "wall_in": 0,
+      "wall_out": 2,
+      "orientation": 0,
+      "x": 16.2,
+      "y": 5.4
+    },
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 3,
+      "room_out": 6,
+      "wall_in": 1,
+      "wall_out": 3,
+      "orientation": 1,
+      "x": 16.6,
+      "y": 11
+    },
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 6,
+      "room_out": 7,
+      "wall_in": 2,
+      "wall_out": 0,
+      "orientation": 0,
+      "x": 14.2,
+      "y": 11.4
+    },
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 4,
+      "room_out": 7,
+      "wall_in": 1,
+      "wall_out": 3,
+      "orientation": 1,
+      "x": 13,
+      "y": 10.2
+    },
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 4,
+      "room_out": 5,
+      "wall_in": 2,
+      "wall_out": 0,
+      "orientation": 0,
+      "x": 11.6,
+      "y": 8
+    },
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 5,
+      "room_out": 8,
+      "wall_in": 2,
+      "wall_out": 0,
+      "orientation": 0,
+      "x": 9.6,
+      "y": 8.4
+    },
+    {
+      "scribbled": false,
+      "mapped": true,
+      "room_in": 1,
+      "room_out": 8,
+      "wall_in": 1,
+      "wall_out": 3,
+      "orientation": 1,
+      "x": 8.2,
+      "y": 8
+    }
+  ]
+}
