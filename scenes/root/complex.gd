@@ -3,25 +3,33 @@ extends Node
 @onready var rolmaat = get_tree().root.get_node("world/rolmaat")
 @onready var room_parent = get_tree().root.get_node("world/SubViewportContainer/SubViewport")
 
-var rooms_json = "test1.json"
+var rooms_json = "penis.json"
 
 var player
 var rooms = []
 var doors = []
 
+func door_matches_wall(door, direction, room) -> bool:
+	return ((door.room_out == room and door.wall_out == direction) or 
+			(door.room_in  == room and door.wall_in == direction))
+
 func _input(event) -> void:
 	if(event is InputEventKey and event.pressed):
+		var room_index = complex.player.room
+		var door
 		match event.keycode:
-			KEY_0:
-				enter_room(0)
-			KEY_1:
-				enter_room(1)
-			KEY_2:
-				enter_room(2)
-			KEY_3:
-				enter_room(3)
+			KEY_W:
+				door = complex.doors.find_custom(func (d): return door_matches_wall(d, orient.north, room_index))
+			KEY_A:
+				door = complex.doors.find_custom(func (d): return door_matches_wall(d, orient.west, room_index))
+			KEY_S:
+				door = complex.doors.find_custom(func (d): return door_matches_wall(d, orient.south, room_index))
+			KEY_D:
+				door = complex.doors.find_custom(func (d): return door_matches_wall(d, orient.east, room_index))
 			_:
 				return
+		if(door>-1):
+			enter_room(door)
 
 func enter_room(door_index) -> void:		
 	var new_door = doors[door_index]
