@@ -7,8 +7,6 @@ const DOOR_SCENE = preload("res://scenes/door/door.tscn")
 
 const ROOM_HEIGHT: float = 2
 
-@onready var complex = get_parent().get_parent().get_parent().get_node("complex")
-
 var room_size = Vector2(1,1)
 var room_doors
 var player_door_index

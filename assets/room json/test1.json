@@ -1,0 +1,86 @@
+{
+	"player": {
+		"room": 0,
+		"door": 0,
+		"orientation": 0,
+		"position": [0.8, 1.9]
+	},
+
+	"rooms": [
+		{
+			"mapped": true,
+			"x": 0.4,
+			"y": 0.4,
+			"w": 4.0,
+			"h": 3.0
+		},
+		{
+			"mapped": false,
+			"x": 4.4,
+			"y": 1.6,
+			"w": 3.4,
+			"h": 4.8
+		},
+		{
+			"mapped": false,
+			"x": 1.2,
+			"y": 3.4,
+			"w": 3.2,
+			"h": 4.4
+		},
+		{
+			"mapped": false,
+			"x": 4.4,
+			"y": 6.4,
+			"w": 2.6,
+			"h": 3.0
+		},
+	],
+
+	"doors": [
+		{
+			"scribbled": true,
+			"mapped": true,
+			"room_in": 0,
+			"room_out": 1, 
+			"wall_in": 0,
+			"wall_out": 2,
+			"orientation": 0,
+			"x": 4.4, 
+			"y": 2.0
+		},
+		{
+			"scribbled": true,
+			"mapped": true,
+			"room_in": 0,
+			"room_out": 2, 
+			"wall_in": 1,
+			"wall_out": 3,
+			"orientation": 1,
+			"x": 1.6,
+			"y": 3.4
+		},
+		{
+			"scribbled": false,
+			"mapped": false,
+			"room_in": 1,
+			"room_out": 3, 
+			"wall_in": 1,
+			"wall_out": 3,
+			"orientation": 1,
+			"x": 5.2, 
+			"y": 6.4
+		},
+		{
+			"scribbled": false,
+			"mapped": false,
+			"room_in": 3,
+			"room_out": 2, 
+			"wall_in": 2,
+			"wall_out": 0,
+			"orientation": 2,
+			"x": 4.4, 
+			"y": 6.8
+		},
+	]
+}

@@ -1,6 +1,5 @@
 extends AnimatedSprite2D
 
-@onready var complex = get_parent().get_node("complex")
 @onready var tapeje = get_node("rolmaat_tapeje")
 @onready var muurtje = get_node("rolmaat_muurtje")
 

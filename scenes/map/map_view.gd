@@ -1,7 +1,6 @@
 #@tool
 extends Node2D
 
-@onready var complex = get_parent().get_parent().get_parent().get_node("complex")
 @onready var rolmaat = get_parent().get_parent().get_parent().get_node("rolmaat")
 @onready var player = get_node("map_player")
 
@@ -34,7 +33,7 @@ func _process(delta: float) -> void:
 	var room_index = complex.player.room
 	var room = complex.rooms[complex.player.room]
 	if(!room.mapped):
-		var room_node = get_node_or_null("room_plan_{index}".format({"index": room_index}))
+		var room_node = get_node_or_null("room_plan_{index}".format({"index": int(room_index)}))
 		if(room_node == null):
 			room_node = new_room(room.x, room.y, 0.1, 0.1, room_index)
 			room_node.scale = Vector2(0,0)
@@ -52,7 +51,7 @@ func _process(delta: float) -> void:
 
 func new_room(x, y, w, h, room_index) -> NinePatchRect:
 	var room = NinePatchRect.new()
-	room.name = "room_plan_{index}".format({"index": room_index})
+	room.name = "room_plan_{index}".format({"index": int(room_index)})
 	room.set_texture(wall_texture)
 	room.region_rect = Rect2(0, 0, 30, 30)
 	room.axis_stretch_horizontal = NinePatchRect.AXIS_STRETCH_MODE_TILE
