@@ -66,10 +66,10 @@ color = Color(0, 0, 0, 1)
 position = Vector2(26, 23)
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="."]
-offset_left = 530.0
-offset_top = 90.0
-offset_right = 1292.0
-offset_bottom = 488.0
+offset_left = 528.0
+offset_top = 25.0
+offset_right = 1290.0
+offset_bottom = 423.0
 scale = Vector2(0.810108, 0.810108)
 mouse_target = true
 
