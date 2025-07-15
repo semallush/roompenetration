@@ -4,27 +4,34 @@
 [ext_resource type="Texture2D" uid="uid://cndf0fv6y8116" path="res://assets/wood.jpg" id="2_s50t8"]
 [ext_resource type="Material" uid="uid://c321dvjcywen5" path="res://assets/wallmaterial.tres" id="3_7u4ld"]
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_2qj5x"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_7u4ld"]
+size = Vector2(1, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7u4ld"]
 albedo_texture = ExtResource("2_s50t8")
 albedo_texture_force_srgb = true
 uv1_scale = Vector3(4, 4, 4)
 
+[sub_resource type="PlaneMesh" id="PlaneMesh_5gkwi"]
+size = Vector2(2, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_2qj5x"]
+size = Vector2(2, 1)
+
 [sub_resource type="PlaneMesh" id="PlaneMesh_jrm0b"]
+size = Vector2(1, 2)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_a0ii0"]
+size = Vector2(1, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sbqfw"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_udvj8"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_d0l0y"]
+size = Vector2(1, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a0ii0"]
 albedo_color = Color(0, 0, 0, 1)
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_pe0rc"]
+[sub_resource type="PlaneMesh" id="PlaneMesh_udvj8"]
+size = Vector2(1, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udvj8"]
 albedo_color = Color(0, 0, 0, 1)
@@ -33,8 +40,9 @@ albedo_color = Color(0, 0, 0, 1)
 script = ExtResource("1_2qj5x")
 
 [node name="camera" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.7199)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1.5)
 current = true
+fov = 90.0
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62015, 0)
@@ -45,42 +53,42 @@ light_size = 0.859
 light_specular = 5.025
 
 [node name="floor" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_2qj5x")
+mesh = SubResource("PlaneMesh_7u4ld")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_7u4ld")
 
 [node name="wall_left" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -1, 1, 0)
-mesh = SubResource("PlaneMesh_jrm0b")
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, -0.5, 1, 0)
+mesh = SubResource("PlaneMesh_5gkwi")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_7u4ld")
 
 [node name="wall_right" type="MeshInstance3D" parent="."]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 1, 1, 0)
-mesh = SubResource("PlaneMesh_a0ii0")
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0.5, 1, 0)
+mesh = SubResource("PlaneMesh_2qj5x")
 skeleton = NodePath("")
 surface_material_override/0 = ExtResource("3_7u4ld")
 
 [node name="wall_back" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, -1)
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1, -0.5)
 material_override = ExtResource("3_7u4ld")
-mesh = SubResource("PlaneMesh_sbqfw")
+mesh = SubResource("PlaneMesh_jrm0b")
 surface_material_override/0 = ExtResource("3_7u4ld")
 
 [node name="ceiling" type="MeshInstance3D" parent="."]
 transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 2, 0)
 material_override = ExtResource("3_7u4ld")
-mesh = SubResource("PlaneMesh_udvj8")
+mesh = SubResource("PlaneMesh_a0ii0")
 skeleton = NodePath("")
 
 [node name="black_bar_left" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -2, 1, 1)
-mesh = SubResource("PlaneMesh_d0l0y")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1, 1, 0.5)
+mesh = SubResource("PlaneMesh_sbqfw")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_a0ii0")
 
 [node name="black_bar_right" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2, 1, 1)
-mesh = SubResource("PlaneMesh_pe0rc")
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 1, 1, 0.5)
+mesh = SubResource("PlaneMesh_udvj8")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_udvj8")

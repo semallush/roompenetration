@@ -56,8 +56,6 @@ func enter_room(door_index) -> void:
 		child.queue_free()
 	room_parent.add_child(new_room)
 	
-	new_room.update_doors()
-	new_room.update_room()
 	
 func collect_room_doors(room_index) -> Array:
 	# collects necessary door information ("room" doors) for generating room view room
@@ -95,6 +93,17 @@ func _ready() -> void:
 		door.wall_in = int(door.wall_in)
 		door.wall_out = int(door.wall_out)
 		door.orientation = int(door.orientation)
+		
+	# laad eerste kamer in
+	var room_index = player.room
+	var room_doors = collect_room_doors(room_index)
+	var room_size = Vector2(rooms[room_index].w, rooms[room_index].h)
+	var new_room = Room.new_room(room_size, room_doors, player.door, player.orientation)
+	
+	# removes old room (the room in the editor is only there for adjusting the UI, it should get deleted right away)
+	for child in room_parent.get_children():
+		child.queue_free()
+	room_parent.add_child(new_room)
 
 enum orient {
 	east = 0,
