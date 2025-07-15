@@ -1,6 +1,5 @@
 extends AnimatedSprite2D
 
-@onready var complex = get_parent().get_node("complex")
 @onready var tapeje = get_node("rolmaat_tapeje")
 @onready var muurtje = get_node("rolmaat_muurtje")
 
@@ -22,13 +21,19 @@ func _ready() -> void:
 	muurtje_base_pos = muurtje.position
 	tapeje_base_pos = tapeje.position
 	tapeje_base_width = tapeje.size.x
+	enter_room()
+
+func enter_room() -> void:
+	progress = mapping_progress.done if complex.rooms[complex.player.room].mapped else mapping_progress.init
+	set_muurtje()
+	
 
 func set_muurtje() -> void:
 	match progress:
 		mapping_progress.init: goal = complex.rooms[complex.player.room].w
 		mapping_progress.width_done: goal = complex.rooms[complex.player.room].h
 		mapping_progress.done: 
-			goal = 0
+			goal = -100
 			complex.rooms[complex.player.room].mapped = true
 	muurtje.position = muurtje_base_pos + Vector2(PIXEL_RANGE * goal/MAX_GOAL, 0)
 	

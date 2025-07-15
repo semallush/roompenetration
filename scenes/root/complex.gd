@@ -1,23 +1,38 @@
 extends Node
 
-@onready var rolmaat = get_parent().get_node("rolmaat")
-@onready var room_parent = get_node("../SubViewportContainer/SubViewport")
+@onready var rolmaat = get_tree().root.get_node("world/rolmaat")
+@onready var room_parent = get_tree().root.get_node("world/SubViewportContainer/SubViewport")
+
+# draw maps on https://editor.p5js.org/dakerlogend/sketches/vXFGbJ8Df
+var rooms_json = "penis.json"
+
+var player
+var rooms = []
+var doors = []
+
+func door_matches_wall(door, direction, room) -> bool:
+	return ((door.room_out == room and door.wall_out == direction) or 
+			(door.room_in  == room and door.wall_in == direction))
 
 func _input(event) -> void:
 	if(event is InputEventKey and event.pressed):
+		var room_index = complex.player.room
+		var door
 		match event.keycode:
-			KEY_0:
-				enter_room(0)
-			KEY_1:
-				enter_room(1)
-			KEY_2:
-				enter_room(2)
-			KEY_3:
-				enter_room(3)
+			KEY_W:
+				door = complex.doors.find_custom(func (d): return door_matches_wall(d, orient.north, room_index))
+			KEY_A:
+				door = complex.doors.find_custom(func (d): return door_matches_wall(d, orient.west, room_index))
+			KEY_S:
+				door = complex.doors.find_custom(func (d): return door_matches_wall(d, orient.south, room_index))
+			KEY_D:
+				door = complex.doors.find_custom(func (d): return door_matches_wall(d, orient.east, room_index))
 			_:
 				return
+		if(door>-1):
+			enter_room(door)
 
-func enter_room(door_index) -> void:
+func enter_room(door_index) -> void:		
 	var new_door = doors[door_index]
 	var in_door = player.room == new_door.room_in
 	
@@ -29,9 +44,7 @@ func enter_room(door_index) -> void:
 	var vertical_offset = -0.2 if [orient.west, orient.south].has(player.orientation) else 0.2
 	player.position = Vector2(new_door.x, new_door.y) + Vector2(0.2, vertical_offset).rotated(0.5 * PI * player.orientation)
 	
-	if(!rooms[room_index].mapped):
-		rolmaat.progress = rolmaat.mapping_progress.init
-		rolmaat.set_muurtje()
+	rolmaat.enter_room()
 	
 	# laad nieuwe kamer in
 	var room_doors = collect_room_doors(room_index)
@@ -61,93 +74,27 @@ func collect_room_doors(room_index) -> Array:
 			}
 			room_doors.append(door)
 	return room_doors
+
+func _ready() -> void:
+	var file = FileAccess.open("res://assets/room json/" + rooms_json, FileAccess.READ)
+	var json_string = file.get_as_text()
+	var json = JSON.new()
+	json.parse(json_string)
 	
-
-
-var player = {
-	room = 0,
-	door = 0,
-	orientation = orient.east,
-	position = Vector2(0.8, 1.9)
-}
-
-var rooms = [
-	{
-		mapped = true,
-		x = 0.4,
-		y = 0.4,
-		w = 4.0,
-		h = 3.0
-	},
-	{
-		mapped = false,
-		x = 4.4,
-		y = 1.6,
-		w = 3.4,
-		h = 4.8
-	},
-	{
-		mapped = false,
-		x = 1.2,
-		y = 3.4,
-		w = 3.2,
-		h = 4.4
-	},
-	{
-		mapped = false,
-		x = 4.4,
-		y = 6.4,
-		w = 2.6,
-		h = 3.0
-	},
-]
-
-var doors = [
-	{
-		scribbled = true,
-		mapped = true,
-		room_in = 0,
-		room_out = 1, 
-		wall_in = orient.east,
-		wall_out = orient.west,
-		orientation = orient.east,
-		x = rooms[0].x + rooms[0].w, 
-		y = rooms[0].y + 1.6
-	},
-	{
-		scribbled = true,
-		mapped = true,
-		room_in = 0,
-		room_out = 2, 
-		wall_in = orient.south,
-		wall_out = orient.north,
-		orientation = orient.south,
-		x = rooms[0].x + 1.2,
-		y = rooms[0].y + rooms[0].h
-	},
-	{
-		scribbled = false,
-		mapped = false,
-		room_in = 1,
-		room_out = 3, 
-		wall_in = orient.south,
-		wall_out = orient.north,
-		orientation = orient.south,
-		x = rooms[1].x + 0.8, 
-		y = rooms[1].y + rooms[1].h
-	},
-	{
-		scribbled = false,
-		mapped = false,
-		room_in = 3,
-		room_out = 2, 
-		wall_in = orient.west,
-		wall_out = orient.east,
-		orientation = orient.west,
-		x = rooms[3].x, 
-		y = rooms[3].y + 0.4
-	},
-]
+	player = json.data.player
+	rooms = json.data.rooms
+	doors = json.data.doors
+	
+	#need to map ints back to ints. this is fucking lame. if the json gets more complicated we should just write a proper mapping function
+	player.room = int(player.room)
+	player.orientation = int(player.orientation)
+	player.position = Vector2(player.position[0], player.position[1])
+	for door in doors:
+		door.room_in = int(door.room_in)
+		door.room_out = int(door.room_out)
+		door.wall_in = int(door.wall_in)
+		door.wall_out = int(door.wall_out)
+		door.orientation = int(door.orientation)
 
 enum orient {
 	east = 0,
