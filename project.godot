@@ -19,6 +19,11 @@ config/icon="res://icon.svg"
 
 complex="*res://scenes/root/complex.gd"
 
+[display]
+
+mouse_cursor/custom_image="uid://da1xx7jrh5ivm"
+mouse_cursor/custom_image_hotspot=Vector2(5, 5)
+
 [input]
 
 lmb={

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://ceihno72vi8o0"]
+[gd_scene load_steps=42 format=3 uid="uid://ceihno72vi8o0"]
 
 [ext_resource type="PackedScene" uid="uid://fxj4lfuspq5l" path="res://scenes/map/map_view.tscn" id="1_yw275"]
 [ext_resource type="PackedScene" uid="uid://110tth0q5h23" path="res://scenes/room/room_view.tscn" id="2_gluis"]
@@ -13,6 +13,31 @@
 [ext_resource type="Texture2D" uid="uid://b3hlrv4j6sxiw" path="res://assets/rolmaat-animation/rolmaat5.png" id="8_jg10f"]
 [ext_resource type="Texture2D" uid="uid://dsd0dobx7bea8" path="res://assets/rolmaat-animation/rolmaat6.png" id="9_66ps0"]
 [ext_resource type="Texture2D" uid="uid://dbfhr1dfne2vu" path="res://assets/rolmaat-animation/rolmaat7.png" id="10_1kodk"]
+[ext_resource type="Texture2D" uid="uid://cnkiqyj1b58y0" path="res://assets/door-tooltip/door-tooltip1.png" id="14_0sxgk"]
+[ext_resource type="Texture2D" uid="uid://ddt8t64egvobr" path="res://assets/door-tooltip/door-tooltip2.png" id="15_jg10f"]
+[ext_resource type="Texture2D" uid="uid://cggc0rtnifwce" path="res://assets/door-tooltip/door-tooltip3.png" id="16_66ps0"]
+[ext_resource type="Texture2D" uid="uid://b62jmsqgcyf43" path="res://assets/door-tooltip/door-tooltip4.png" id="17_1kodk"]
+[ext_resource type="Script" uid="uid://coi7svm3bakfb" path="res://scenes/root/tooltip.gd" id="18_mcje0"]
+[ext_resource type="Texture2D" uid="uid://dnv7hcku7tc8j" path="res://assets/cursor-animation/cursor1.png" id="18_ugnpk"]
+[ext_resource type="Texture2D" uid="uid://b0ywb8prl1hps" path="res://assets/cursor-animation/cursor2.png" id="19_3qg8d"]
+[ext_resource type="Texture2D" uid="uid://cscdutvomrwt2" path="res://assets/cursor-animation/cursor3.png" id="20_treao"]
+[ext_resource type="Texture2D" uid="uid://tyghgfmm821m" path="res://assets/cursor-animation/cursor4.png" id="21_pvnt6"]
+[ext_resource type="Texture2D" uid="uid://bfqmnd0qs7mdp" path="res://assets/cursor-animation/cursor5.png" id="22_5o8vc"]
+[ext_resource type="Texture2D" uid="uid://bhkju0fqs2hx2" path="res://assets/cursor-animation/cursor6.png" id="23_mcje0"]
+[ext_resource type="Texture2D" uid="uid://c50hfmhbi1pk4" path="res://assets/cursor-animation/cursor7.png" id="24_vk5gl"]
+[ext_resource type="Texture2D" uid="uid://rjt0itjholn5" path="res://assets/cursor-animation/cursor8.png" id="25_mi4df"]
+[ext_resource type="Texture2D" uid="uid://crf1ahppxryds" path="res://assets/cursor-animation/cursor9.png" id="26_ebb0h"]
+[ext_resource type="Texture2D" uid="uid://bpab1kxrjok7e" path="res://assets/cursor-animation/cursor10.png" id="27_cbvck"]
+[ext_resource type="Texture2D" uid="uid://dvm2jgtj5a1ep" path="res://assets/cursor-animation/cursor11.png" id="28_s36gw"]
+[ext_resource type="Texture2D" uid="uid://ds3nfa8rg6xbo" path="res://assets/cursor-animation/cursor12.png" id="29_gtbco"]
+[ext_resource type="Texture2D" uid="uid://dq6m0xxxykwtl" path="res://assets/cursor-animation/cursor13.png" id="30_6t4au"]
+[ext_resource type="Texture2D" uid="uid://f7875a7tuolq" path="res://assets/cursor-animation/cursor14.png" id="31_sqpnc"]
+[ext_resource type="Texture2D" uid="uid://lwnm5nmn6eqt" path="res://assets/cursor-animation/cursor15.png" id="32_u6k1m"]
+[ext_resource type="Texture2D" uid="uid://dvmwi7fbjqtu" path="res://assets/cursor-animation/cursor16.png" id="33_1ehaw"]
+[ext_resource type="Texture2D" uid="uid://bvjapghurdv7b" path="res://assets/cursor-animation/cursor17.png" id="34_pvnt6"]
+[ext_resource type="Texture2D" uid="uid://dsql52a3xuxuy" path="res://assets/cursor-animation/cursor18.png" id="35_5o8vc"]
+[ext_resource type="Texture2D" uid="uid://cfm8d46dw1x50" path="res://assets/cursor-animation/cursor19.png" id="36_mcje0"]
+[ext_resource type="Script" uid="uid://sabs31pudj56" path="res://scenes/root/scribble.gd" id="37_5o8vc"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_6w71l"]
 animations = [{
@@ -49,6 +74,91 @@ animations = [{
 "loop": true,
 "name": &"rest",
 "speed": 5.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tek5g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_0sxgk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_jg10f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_66ps0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_1kodk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nd2cf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_ugnpk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3qg8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_treao")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_pvnt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_5o8vc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_mcje0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_vk5gl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_mi4df")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_ebb0h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_cbvck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_s36gw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("29_gtbco")
+}, {
+"duration": 1.0,
+"texture": ExtResource("30_6t4au")
+}, {
+"duration": 1.0,
+"texture": ExtResource("31_sqpnc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("32_u6k1m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("33_1ehaw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("34_pvnt6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_5o8vc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_mcje0")
+}],
+"loop": true,
+"name": &"scribble",
+"speed": 15.0
 }]
 
 [node name="world" type="Node2D"]
@@ -113,6 +223,21 @@ offset_right = 1196.0
 offset_bottom = 632.0
 text = "hint: you can use the tape measure to measure your cock"
 scroll_active = false
+
+[node name="tooltip" type="AnimatedSprite2D" parent="."]
+position = Vector2(-149, 0)
+sprite_frames = SubResource("SpriteFrames_tek5g")
+frame_progress = 0.383586
+centered = false
+script = ExtResource("18_mcje0")
+
+[node name="scribble" type="AnimatedSprite2D" parent="."]
+position = Vector2(-48, 104)
+sprite_frames = SubResource("SpriteFrames_nd2cf")
+animation = &"scribble"
+centered = false
+offset = Vector2(-5, -5)
+script = ExtResource("37_5o8vc")
 
 [connection signal="mouse_entered" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_entered"]
 [connection signal="mouse_exited" from="rolmaat/rolmaat_tapeje" to="rolmaat" method="_on_tapeje_mouse_exited"]

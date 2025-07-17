@@ -10,6 +10,7 @@ var DOOR_WIDTH = 25
 
 var wall_texture = load("res://assets/map-assets_walls.png")
 var door_texture = load("res://assets/map-assets_door.png")
+var door_scribble_texture = load("res://assets/map-assets_door-scribble.png")
 
 var mapping_new_room = false
 
@@ -19,12 +20,14 @@ func _ready() -> void:
 		if(!room.mapped): continue
 		var room_node = new_room(room.x, room.y, room.w, room.h, i)
 		add_child(room_node)
-	for door in complex.doors:
+	for i in range(complex.doors.size()):
+		var door = complex.doors[i]
 		if(door.mapped):
-			var door_node = new_door(door.x, door.y, door.orientation)
+			var door_node = new_door(i, "technical")
 			add_child(door_node)
 		elif(door.scribbled):
-			assert( 0, "SCRIBBLED DOORS NOT YET IMPLEMENTED")
+			var door_node = new_door(i, "scribble")
+			add_child(door_node)
 
 func _process(delta: float) -> void:
 	player.position = complex.player.position * VIEW_SCALE - Vector2(4.5, 14)
@@ -62,9 +65,17 @@ func new_room(x, y, w, h, room_index) -> NinePatchRect:
 	room.size = Vector2(w * VIEW_SCALE + WALL_THICKNESS, h * VIEW_SCALE + WALL_THICKNESS)	
 	return room
 
-func new_door(x, y, orientation) -> TextureRect:
+func new_door(door_index, draw_mode) -> TextureRect:
+	var door_object = complex.doors[door_index]
+	var x = door_object.x
+	var y = door_object.y
+	var orientation = door_object.orientation
 	var door = TextureRect.new()
-	door.set_texture(door_texture)
+	if(draw_mode == "technical"):
+		door.set_texture(door_texture)
+	if(draw_mode == "scribble"):
+		door.set_texture(door_scribble_texture)
+	door.name = "door_plan_{index}".format({"index": int(door_index)})
 	door.position = Vector2(x * VIEW_SCALE - WALL_THICKNESS * 0.5, 
 		y * VIEW_SCALE - WALL_THICKNESS * 0.5
 		) + door_offset[orientation]
@@ -72,6 +83,10 @@ func new_door(x, y, orientation) -> TextureRect:
 	door.rotation = rot_from_ori(orientation)
 	door.z_index = 1
 	return door
+
+func map_scribbled_door(door_index) -> void:
+	var door_node = get_node_or_null("door_plan_{index}".format({"index": int(door_index)}))
+	door_node.set_texture(door_texture)
 
 func rot_from_ori(orientation) -> float:
 	return 0.5 * PI * orientation

@@ -165,7 +165,12 @@ func spawn_door(x, z, rot, i) -> void:
 	new_door.rotation = rot
 	add_child(new_door)
 	new_door.pressed.connect(_on_door_pressed)
+	new_door.hover.connect(complex.hovering_on_door)
+	new_door.mouse_exited.connect(complex.stop_hovering_on_door)
 
-func _on_door_pressed(door_index):
-	print("entering door with index: ", door_index)
-	complex.enter_room(door_index)
+func _on_door_pressed(door_index, button_index):
+	if(button_index == 1):
+		print("entering door with index: ", door_index)
+		complex.enter_room(door_index)
+	if(button_index == 2):
+		complex.map_door(door_index)

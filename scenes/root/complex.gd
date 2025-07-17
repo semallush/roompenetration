@@ -1,6 +1,9 @@
 extends Node
 
 @onready var rolmaat = get_tree().root.get_node("world/rolmaat")
+@onready var scribble = get_tree().root.get_node("world/scribble")
+@onready var tooltip = get_tree().root.get_node("world/tooltip")
+@onready var map_view = get_tree().root.get_node("world/map_view/edge/map_view")
 @onready var room_parent = get_tree().root.get_node("world/SubViewportContainer/SubViewport")
 
 # draw maps on https://editor.p5js.org/dakerlogend/sketches/vXFGbJ8Df
@@ -9,6 +12,10 @@ var rooms_json = "penis.json"
 var player
 var rooms = []
 var doors = []
+
+var scribbling_timestamp = 0
+var scribbling_door = -1
+var SCRIBBLE_TIME = 19 * (1000/15) # based on the animation rn lol
 
 func door_matches_wall(door, direction, room) -> bool:
 	return ((door.room_out == room and door.wall_out == direction) or 
@@ -32,7 +39,8 @@ func _input(event) -> void:
 		if(door>-1):
 			enter_room(door)
 
-func enter_room(door_index) -> void:		
+func enter_room(door_index) -> void:
+	stop_hovering_on_door()
 	var new_door = doors[door_index]
 	var in_door = player.room == new_door.room_in
 	
@@ -55,8 +63,29 @@ func enter_room(door_index) -> void:
 	for child in room_parent.get_children():
 		child.queue_free()
 	room_parent.add_child(new_room)
-	
-	
+
+func hovering_on_door(door_index) -> void:
+	if(!doors[door_index].scribbled):
+		scribbling_door = door_index
+		scribbling_timestamp = Time.get_ticks_msec()
+		Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+		scribble.set_frame(0)
+		scribble.play("scribble")
+	elif(!doors[door_index].mapped):
+		tooltip.show_tooltip = true
+
+func stop_hovering_on_door() -> void:
+	tooltip.show_tooltip = false
+	scribbling_door = -1
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+	return
+
+func map_door(door_index) -> void:
+	var door = doors[door_index]
+	if(door.scribbled and !door.mapped):
+		door.mapped = true
+		map_view.map_scribbled_door(door_index)
+
 func collect_room_doors(room_index) -> Array:
 	# collects necessary door information ("room" doors) for generating room view room
 	var room_doors = []
@@ -104,6 +133,17 @@ func _ready() -> void:
 	for child in room_parent.get_children():
 		child.queue_free()
 	room_parent.add_child(new_room)
+
+func _process(delta: float) -> void:
+	if(scribbling_door != -1 and Time.get_ticks_msec() - scribbling_timestamp > SCRIBBLE_TIME):
+		var door = doors[scribbling_door]
+		door.scribbled = true
+		var door_node = map_view.new_door(scribbling_door, "scribble")
+		map_view.add_child(door_node)
+		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		scribbling_door = -1
+		tooltip.show_tooltip = true
+		tooltip.play()
 
 enum orient {
 	east = 0,
