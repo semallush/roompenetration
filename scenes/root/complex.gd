@@ -4,6 +4,7 @@ extends Node
 @onready var scribble = get_tree().root.get_node("world/scribble")
 @onready var tooltip = get_tree().root.get_node("world/tooltip")
 @onready var map_view = get_tree().root.get_node("world/map_view/edge/map_view")
+@onready var map_window = get_tree().root.get_node("world/map_view")
 @onready var room_parent = get_tree().root.get_node("world/SubViewportContainer/SubViewport")
 
 # draw maps on https://editor.p5js.org/dakerlogend/sketches/vXFGbJ8Df
@@ -53,6 +54,7 @@ func enter_room(door_index) -> void:
 	player.position = Vector2(new_door.x, new_door.y) + Vector2(0.2, vertical_offset).rotated(0.5 * PI * player.orientation)
 	
 	rolmaat.enter_room()
+	map_window.focus_map_on_player()
 	
 	# laad nieuwe kamer in
 	var room_doors = collect_room_doors(room_index)
